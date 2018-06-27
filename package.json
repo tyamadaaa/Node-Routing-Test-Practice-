@@ -1,0 +1,30 @@
+{
+  "name": "second_routing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "ejs-lint": "^0.3.0",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.1.0",
+    "superagent": "^3.8.3",
+    "supertest": "^3.1.0"
+  }
+}
