@@ -1,4 +1,4 @@
-const app = require('./app');
+const app = require('./src/webpage');
 
 const server = app.listen(3000, function () {
     const host = server.address().address;

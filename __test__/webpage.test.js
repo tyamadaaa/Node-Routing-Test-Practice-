@@ -1,40 +1,42 @@
 const request = require('supertest');
-const app = require('./src/app');
-const data = require('./src/app');
+const app = require('../src/webpage');
+const data = require('../src/webpage');
 
-
-//testing homepage
-describe('homepage works', () => {
+describe('homepage test', () => {
     test('should show index.html', () => {
         return request(app)
         .get("/")
         .set('content-type', 'text/html');
     });
 
-    test('should contain "An Unordered HTML List"', async () => {
-        const response = await request(app)
+    test('should contain "An Unordered HTML List"', () => {
+        return request(app)
         .get("/")
         expect(/An Unordered HTML List/);
     });
 });
 
-//testing contact page
-describe('contact page works', () => {
-    test('the correct page should be working', async () => {
-        const response = await request(app)
+describe('contact page test', () => {
+    test('the correct page should be shown', () => {
+        return request(app)
         .get("/contact")
         .expect(200);
     });
     
-    test('should display "This is the contact page"', async () => {
-        const response = await request(app)
+    test('should display "This is the contact page"', () => {
+        return request(app)
         .get("/contact")
         expect(/This is the contact page/);
     });
+
+    test('should throw an error message', () => {
+        return request(app)
+        .get("/contact/name")
+        expect(/Error/);
+    });
 });
 
-//testing profile/name page
-describe('profile/name page works', () => {
+describe('profile/name test', () => {
     test('should be able to access', () => {
         return request(app)
         .get('/profile/name')
@@ -54,8 +56,7 @@ describe('profile/name page works', () => {
     });
 });
 
-//testing status/name page
-describe('/status/name page works', () => {
+describe('status/name test', () => {
     test('should be able to access', () => {
         return request(app)
         .get('/status/name')
@@ -65,20 +66,14 @@ describe('/status/name page works', () => {
         });
     });
 
-    test('should direct to URL with appropriate name', async () => {
-        await request(app)
-        .get('/status/kate')
-        .expect(200)
-    });
-
-    test('should not direct to invalid URL', async () => {
-        await request(app)
+    test('should be invalid URL', () => {
+        return request(app)
         .get('/status/kate/id')
-        .expect(404)
+        .expect(404);
     });
 
-    test('data should appear', async () => {
-        await request(app)
+    test('personal data should appear', () => {
+        return request(app)
         .get("/status/name")
         expect.objectContaining({data});
     });
