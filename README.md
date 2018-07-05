@@ -6,8 +6,6 @@
 
 - Jest version 23.2.0
 
-- Jest version 23.1.0
-
 - Express version 4.16.3
 
 - ejs version 2.6.1
