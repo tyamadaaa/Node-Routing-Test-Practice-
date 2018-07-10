@@ -18,10 +18,9 @@
 
 - supertest version 3.1.0
 
-## Set Up
+## Project Set Up
 ```
-$ npm init
-$ npm install --save-dev jest express ejs ejs-lint supertest superagent 
+$ npm i
 ```
 ## Running the projects
 ```

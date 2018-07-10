@@ -5,13 +5,13 @@ const data = require('../src/webpage');
 describe('homepage test', () => {
     test('should show index.html', () => {
         return request(app)
-        .get("/")
+        .get('/')
         .set('content-type', 'text/html');
     });
 
     test('should contain "An Unordered HTML List"', () => {
         return request(app)
-        .get("/")
+        .get('/')
         expect(/An Unordered HTML List/);
     });
 });
@@ -19,20 +19,20 @@ describe('homepage test', () => {
 describe('contact page test', () => {
     test('the correct page should be shown', () => {
         return request(app)
-        .get("/contact")
+        .get('/contact')
         .expect(200);
     });
     
     test('should display "This is the contact page"', () => {
         return request(app)
-        .get("/contact")
+        .get('/contact')
         expect(/This is the contact page/);
     });
 
-    test('should throw an error message', () => {
+    test('should throw Internal Server Error', () => {
         return request(app)
-        .get("/contact/name")
-        expect(/Error/);
+        .get('/contact/name')
+        expect(500);
     });
 });
 
@@ -46,12 +46,14 @@ describe('profile/name test', () => {
         });
     });
 
-    test('should return error', () => {
+    test('should return 404 error', () => {
         request(app)
         .get('/profile/name/error')
         .expect(404)
         .end(function(err,res) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            };
         });
     });
 });
@@ -74,7 +76,7 @@ describe('status/name test', () => {
 
     test('personal data should appear', () => {
         return request(app)
-        .get("/status/name")
+        .get('/status/name')
         expect.objectContaining({data});
     });
 });
