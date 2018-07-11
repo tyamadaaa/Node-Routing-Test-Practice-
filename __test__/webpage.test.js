@@ -47,14 +47,9 @@ describe('profile/name test', () => {
     });
 
     test('should return 404 error', () => {
-        request(app)
+        return request(app)
         .get('/profile/name/error')
         .expect(404)
-        .end(function(err,res) {
-            if (err) {
-                throw err;
-            };
-        });
     });
 });
 
@@ -63,9 +58,6 @@ describe('status/name test', () => {
         return request(app)
         .get('/status/name')
         .expect(200)
-        .then(res => {
-            expect(res.statusCode).toEqual(200);
-        });
     });
 
     test('should be invalid URL', () => {
